@@ -145,6 +145,7 @@ fi
             ensure          = 'present'
             type            = 'link'
             SourcePath      = '/etc/pam.d/system-auth-ac'
+            DependsOn       = "[nxFile]SYSTEMAUTHAC"
         }
 
         $pwqualityConf_file =New-Object -TypeName 'System.Uri' -ArgumentList $xCISFiles,'pwquality.conf'
