@@ -144,7 +144,7 @@ fi
             DestinationPath = '/etc/pam.d/system-auth'
             ensure          = 'present'
             type            = 'link'
-            #target => '/etc/pam.d/system-auth-ac'
+            SourcePath      = '/etc/pam.d/system-auth-ac'
         }
 
         $pwqualityConf_file =New-Object -TypeName 'System.Uri' -ArgumentList $xCISFiles,'pwquality.conf'
