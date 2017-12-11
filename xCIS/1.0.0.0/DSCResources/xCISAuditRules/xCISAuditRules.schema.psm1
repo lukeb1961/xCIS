@@ -1,11 +1,13 @@
 ﻿Configuration xCISAuditRules
 {
+    [CmdletBinding()]
+    PARAM ([Parameter(Mandatory=$true)]  [string] $StorageURI)
 
     Import-DscResource -ModuleName nx
     Import-DscResource -ModuleName xCIS
  
-    $uri='https://raw.githubusercontent.com/lukeb1961/xCIS/master/xCIS/1.0.0.0/'
-    $xCISRoot     =New-Object -TypeName 'System.Uri' -ArgumentList $uri
+    
+    $xCISRoot     =New-Object -TypeName 'System.Uri' -ArgumentList $StorageURI
     $xCISTemplates=New-Object -TypeName 'System.Uri' -ArgumentList $xCISRoot,'templates/'
 
     $AuditRules =New-Object -TypeName 'System.Uri' -ArgumentList $xCISTemplates,'audit.rules.erb'

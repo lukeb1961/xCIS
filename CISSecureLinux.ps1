@@ -2,7 +2,8 @@
 
   [CmdletBinding()]
   PARAM ([ValidateSet("RedHat","CentOS","Fedora","Debian","Ubuntu")]
-         [string] $Distro='RedHat')
+         [string] $Distro='RedHat',
+         [string] $storageURI='https://raw.githubusercontent.com/lukeb1961/xCIS/master/xCIS/1.0.0.0/')
 
   Import-DscResource -ModuleName xCIS
 
@@ -46,12 +47,14 @@
  
     xCISAuditRules audit
     {
+      StorageURI = $storageURI
     }
 
     xCISAuthentication authentication
     {
-      Distro    = $Distro
-      SSHdaemon = $config.ssh_daemon
+      Distro     = $Distro
+      SSHdaemon  = $config.ssh_daemon
+      Storageuri = $storageuri
     }
 
     xCISMail postfix_relay

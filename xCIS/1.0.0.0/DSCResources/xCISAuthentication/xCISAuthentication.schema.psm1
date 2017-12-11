@@ -3,18 +3,16 @@
 
    [CmdletBinding()]
    PARAM ( [Parameter(Mandatory=$true)]
-           [ValidateSet("RedHat","CentOS","Fedora","Debian","Ubuntu")]
-           [string] $Distro,
-           [Parameter(Mandatory=$true)] 
-           [string] $SSHdaemon )
+           [ValidateSet("RedHat","CentOS","Fedora","Debian","Ubuntu")] [string] $Distro,
+           [Parameter(Mandatory=$true)]  [string] $SSHdaemon,
+           [Parameter(Mandatory=$true)]  [string] $StorageURI)
 
     Import-DscResource -ModuleName nx
 
     $OSfamilyRedhat = @("RedHat","CentOS","Fedora")
     $OSfamilyDebian = @("Debian","Ubuntu")
  
-    $uri='https://raw.githubusercontent.com/lukeb1961/xCIS/master/xCIS/1.0.0.0/'
-    $xCISRoot     =New-Object -TypeName 'System.Uri' -ArgumentList $uri
+    $xCISRoot     =New-Object -TypeName 'System.Uri' -ArgumentList $StorageURI
     $xCISFiles    =New-Object -TypeName 'System.Uri' -ArgumentList $xCISRoot,'files/'
     $xCISTemplates=New-Object -TypeName 'System.Uri' -ArgumentList $xCISRoot,'templates/'
 
